@@ -1,0 +1,41 @@
+info:
+  description: Documentation for Captcha API
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+  title: Captcha
+  version: 1.0.0
+paths:
+  /captcha:
+    get:
+      operationId: NewCaptcha
+      responses:
+        "200":
+          $ref: '#/responses/NewCaptcha'
+      summary: Create a new captcha code and image, then return a response object
+        containing our newly created captcha.
+      tags:
+      - Captcha
+  /images/{code}:
+    get:
+      operationId: ServeImage
+      responses:
+        "200":
+          $ref: '#/responses/captchaImage'
+      summary: Serve a captcha image by captcha code.
+      tags:
+      - Captcha
+produces:
+- application/json
+- image/png
+responses:
+  NewCaptcha:
+    description: Response object that contains all of our captcha attributes.
+    headers:
+      code:
+        type: string
+      image:
+        type: string
+schemes:
+- http
+swagger: "2.0"
